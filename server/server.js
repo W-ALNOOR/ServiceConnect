@@ -5,6 +5,7 @@ require("dotenv").config();
 const connectDB = require("./db");
 const authRoutes = require("./routes/auth");
 const serviceRoutes = require("./routes/services");
+const bookingRoutes = require("./routes/bookings");
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
 // API routes
 app.use("/api/auth", authRoutes);
 app.use("/api/services", serviceRoutes);
+app.use("/api/bookings", bookingRoutes);
 
 // Correct listener function
 const PORT = process.env.PORT || 8080;

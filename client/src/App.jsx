@@ -13,18 +13,18 @@ export default function App() {
   useEffect(() => {
     const check = async () => {
       try {
-        const token = localStorage.getElementById("token") || localStorage.getItem("token");
+        const token = localStorage.getItem("token");
         if (!token) {
           setChecking(false);
           return;
         }
         const res = await axios.get("/api/auth/me", {
-          headers: { Authorization: token }
+          headers: { Authorization: "Bearer " + token }
         });
         setUser(res.data.user);
       } catch (e) {
         console.log("Auth check failed", e.message);
-        localFocus?.removeItem("token");
+        localStorage.removeItem("token");
       } finally {
         setChecking(false);
       }
